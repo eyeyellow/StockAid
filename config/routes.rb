@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  resources :items, path: "/inventory" do
+  resources :items, only: [:index, :edit, :update, :new, :create, :destroy] do
     get :edit_stock, on: :member
   end
 
