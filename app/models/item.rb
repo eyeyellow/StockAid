@@ -19,15 +19,7 @@ class Item < ActiveRecord::Base
   enum edit_methods: [:add, :subtract, :new_total]
 
   def self.for_category(category_id)
-    if category_id.present?
-      where(category_id: category_id)
-    else
-      all
-    end
-  end
-
-  def self.group_by_categories
-    includes(:category).order("categories.description, items.description").group_by(&:category)
+    where(category_id: category_id)
   end
 
   def self.selectable_edit_reasons

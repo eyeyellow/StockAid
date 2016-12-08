@@ -7,8 +7,9 @@ class ItemsController < ApplicationController
   active_tab "inventory"
 
   def index
-    @items = Item.with_requested_quantity.for_category(params[:category_id]).group_by_categories
-    @category = Category.find(params[:category_id]) if params[:category_id].present?
+    if params[:category_id].present?
+      @selected_category = Category.where(id: params[:category_id])
+    end
   end
 
   def new
